@@ -108,10 +108,10 @@ jobs:
 
       - name: Copy Files
         run: |
-          mv downloads1/*  downloads2/
+          mv downloads1  downloads2
       - name: Copy Files 1
         run: |      
-          mv downloads2/*  downloads3/
+          mv downloads2  downloads3
 
       
       - name: 第3次上传OneDrive

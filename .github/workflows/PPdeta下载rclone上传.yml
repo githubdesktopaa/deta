@@ -394,10 +394,8 @@ jobs:
       - name: 第8次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第9次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -439,7 +437,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading9.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第9次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第10次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第10次安装安装Python3.9
@@ -484,8 +486,8 @@ jobs:
       - name: 第10次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第11次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -527,7 +529,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading11.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第11次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第12次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第12次安装安装Python3.9
@@ -572,10 +578,8 @@ jobs:
       - name: 第12次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第13次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -617,7 +621,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading13.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第13次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第14次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第14次安装安装Python3.9
@@ -661,10 +669,8 @@ jobs:
       - name: 第14次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第15次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -706,7 +712,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading15.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第15次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第16次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第16次安装安装Python3.9
@@ -750,8 +760,8 @@ jobs:
       - name: 第16次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第17次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -793,7 +803,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading17.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第17次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第18次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第18次安装安装Python3.9
@@ -838,10 +852,8 @@ jobs:
       - name: 第18次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第19次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -883,7 +895,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading19.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第19次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第20次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第20次安装安装Python3.9
@@ -928,10 +944,8 @@ jobs:
       - name: 第20次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第21次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -973,7 +987,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading21.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第21次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第22次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第22次安装安装Python3.9
@@ -1017,10 +1035,8 @@ jobs:
       - name: 第22次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第23次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1062,7 +1078,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading23.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第23次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第24次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第24次安装安装Python3.9
@@ -1103,7 +1123,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading24.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第24次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第24次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
@@ -1152,7 +1176,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading25.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第25次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第26次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第26次安装安装Python3.9
@@ -1197,10 +1225,8 @@ jobs:
       - name: 第26次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
-         sudo rm -rf downloads/ 
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第27次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1242,7 +1268,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading27.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第27次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第28次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1287,10 +1317,8 @@ jobs:
       - name: 第28次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第29次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1332,7 +1360,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading29.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第29次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第30次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第30次安装安装Python3.9
@@ -1377,10 +1409,8 @@ jobs:
       - name: 第30次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第31次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1422,7 +1452,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading31.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第31次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第32次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第32次安装安装Python3.9
@@ -1467,10 +1501,8 @@ jobs:
       - name: 第32次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第33次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1512,7 +1544,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading33.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第33次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第34次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第34次安装安装Python3.9
@@ -1556,10 +1592,8 @@ jobs:
       - name: 第34次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第35次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1601,7 +1635,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading35.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第35次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第36次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1647,10 +1685,8 @@ jobs:
       - name: 第36次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第37次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1691,7 +1727,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading37.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第37次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第38次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第38次安装安装Python3.9
@@ -1735,10 +1775,8 @@ jobs:
       - name: 第38次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第39次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1780,7 +1818,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading39.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第39次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第40次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1825,10 +1867,8 @@ jobs:
       - name: 第40次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第41次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1869,7 +1909,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading41.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第41次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第42次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第42次安装安装Python3.9
@@ -1913,10 +1957,8 @@ jobs:
       - name: 第42次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第43次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -1957,7 +1999,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading43.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第43次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第44次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第44次安装安装Python3.9
@@ -2001,10 +2047,8 @@ jobs:
       - name: 第44次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
 
       - name: 第45次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -2045,7 +2089,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading45.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第45次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads           
       - name: 第46次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第46次安装安装Python3.9
@@ -2088,10 +2136,8 @@ jobs:
       - name: 第46次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第47次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -2132,7 +2178,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading47.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第47次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 第48次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第48次安装安装Python3.9
@@ -2176,10 +2226,8 @@ jobs:
       - name: 第48次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第49次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -2220,7 +2268,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading49.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第49次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
          
       - name: 第50次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -2265,10 +2317,8 @@ jobs:
       - name: 第50次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
-         sudo rm -rf downloads/ 
+         sudo rm -rf downloads/
+         sudo rm -rf downloads  
       - name: 开启新的下载任务
         uses: benc-uk/workflow-dispatch@v1
         with:

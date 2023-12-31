@@ -24,19 +24,6 @@ jobs:
           echo "Free space:"
           df -h
 
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-           tool-cache: true
-           android: true
-           dotnet: true
-           haskell: true
-           large-packages: true
-           docker-images: false
-           swap-storage: true
          
       - name: 安装Aria2 1
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -59,8 +46,12 @@ jobs:
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
           size=$(ls -l downloads1/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
-     
+          echo "::set-output name=size::$size"  >/dev/null 2>&1 
+
+      - name: 检查空间使用情况
+        run: |
+          cd downloads1
+          ls
       - name: 保存数据1，删除远程已经下载列表
         id:  database
         run: |
@@ -89,7 +80,10 @@ jobs:
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
           size=$(ls -l downloads1/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
-      
+      - name: 检查空间使用情况
+        run: |
+          cd downloads2
+          ls      
       - name: 第2次保存数据，删除远程已经下载列表
         id:  database2
         run: |
@@ -126,6 +120,11 @@ jobs:
       - name: Copy Files 1
         run: |      
           sudo mv downloads2/  downloads3/
+
+      - name: 检查空间使用情况
+        run: |
+          cd downloads3
+          ls
       - name: 第3次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads1/

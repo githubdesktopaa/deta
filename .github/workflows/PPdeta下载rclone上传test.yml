@@ -48,10 +48,6 @@ jobs:
           size=$(ls -l downloads1/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1 
 
-      - name: 检查空间使用情况
-        run: |
-          cd downloads1
-          ls
       - name: 保存数据1，删除远程已经下载列表
         id:  database
         run: |
@@ -74,16 +70,12 @@ jobs:
         run: |
           mkdir downloads2
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads1 | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads1/$filename"  >/dev/null 2>&1  
+          filename=$(ls downloads2 | head -n1)  >/dev/null 2>&1  
+          echo "::set-output name=path::downloads2/$filename"  >/dev/null 2>&1  
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads1/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
-      - name: 检查空间使用情况
-        run: |
-          cd downloads2
-          ls      
+          size=$(ls -l downloads2/$filename | awk '{print $5}' )  >/dev/null 2>&1  
+          echo "::set-output name=size::$size"  >/dev/null 2>&1     
       - name: 第2次保存数据，删除远程已经下载列表
         id:  database2
         run: |
@@ -107,32 +99,19 @@ jobs:
         run: |
           mkdir downloads3
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads1 | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads1/$filename"  >/dev/null 2>&1  
+          filename=$(ls downloads3 | head -n1)  >/dev/null 2>&1  
+          echo "::set-output name=path::downloads3/$filename"  >/dev/null 2>&1  
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads1/$filename | awk '{print $5}' )  >/dev/null 2>&1  
+          size=$(ls -l downloads3/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
 
       - name: Copy Files
         run: |
-          sudo mv downloads1/  downloads2/
+          mv downloads1/*  downloads2/
       - name: Copy Files 1
         run: |      
-          sudo mv downloads2/  downloads3/
-
-      - name: 检查空间使用情况
-        run: |
-          cd downloads3
-          ls
-      - name: 第3次删除已下载文件
-        run: |
-         sudo rm -rf ${{ github.workspace }}/downloads1/
-         sudo rm -rf downloads1/
-         sudo rm -rf downloads1
-         sudo rm -rf ${{ github.workspace }}/downloads2/
-         sudo rm -rf downloads2/
-         sudo rm -rf downloads2
+          mv downloads2/*  downloads3/
 
       
       - name: 第3次上传OneDrive

@@ -1,4 +1,4 @@
-name: deta PP下载rclone上传
+name: deta PP下载rclone上传test
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -111,7 +111,7 @@ jobs:
       - name: 第3次下载文件
         id: downloading3
         run: |
-          mkdir downloads1
+          mkdir downloads3
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads1 | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads1/$filename"  >/dev/null 2>&1  

@@ -38,18 +38,18 @@ jobs:
            docker-images: false
            swap-storage: true
          
-      - name: 安装Aria2
+      - name: 安装Aria2 1
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: 安装所需要的Python信赖
+      - name: 安装所需要的Python信赖 1
         run: |
           python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
           pip install install requests  >/dev/null 2>&1  
           
-      - name: 下载文件
+      - name: 下载文件1
         id: downloading
         run: |
           mkdir downloads
@@ -63,19 +63,25 @@ jobs:
         
           
       
-      - name: 上传OneDrive
+      - name: 上传OneDrive1
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}     
+          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }} 
+
      
-      - name: 保存数据，删除远程已经下载列表
+      - name: 保存数据1，删除远程已经下载列表
         id:  database
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第1次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads
+
       - name: 第2次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第2次安装Python3.9
@@ -116,8 +122,8 @@ jobs:
       - name: 第2次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads
          
       - name: 第3次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -156,7 +162,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading3.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第3次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads
       - name: 第4次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第4次安装安装Python3.9
@@ -201,10 +211,8 @@ jobs:
       - name: 第4次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads
          
       - name: 第5次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -246,7 +254,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading5.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-
+      - name: 第5次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads
       - name: 第6次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第6次安装安装Python3.9
@@ -291,10 +303,8 @@ jobs:
       - name: 第6次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads/
-         
-         
-         
          sudo rm -rf downloads/
+         sudo rm -rf downloads
          
       - name: 第7次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
@@ -336,7 +346,11 @@ jobs:
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading7.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-         
+      - name: 第7次删除已下载文件
+        run: |
+         sudo rm -rf ${{ github.workspace }}/downloads/
+         sudo rm -rf downloads/
+         sudo rm -rf downloads        
       - name: 第8次安装Aria2
         run: sudo apt install -y aria2  >/dev/null 2>&1   
       - name: 第8次安装安装Python3.9

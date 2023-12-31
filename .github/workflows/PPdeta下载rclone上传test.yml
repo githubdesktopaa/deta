@@ -122,10 +122,10 @@ jobs:
 
       - name: Copy Files
         run: |
-          mv downloads1/  downloads2/
+          sudo mv downloads1/  downloads2/
       - name: Copy Files 1
         run: |      
-          mv downloads2/ downloads3/
+          sudo mv downloads2/ downloads3/
       
       - name: 第3次上传OneDrive
         uses: wei/rclone@v1

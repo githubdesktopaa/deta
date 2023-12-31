@@ -81,7 +81,7 @@ jobs:
       - name: 第2次下载文件
         id: downloading2
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -125,7 +125,7 @@ jobs:
       - name: 第3次下载文件
         id: downloading3
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -158,7 +158,7 @@ jobs:
       - name: 第4次下载文件
         id: downloading4
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -207,7 +207,7 @@ jobs:
       - name: 第5次下载文件
         id: downloading5
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -242,7 +242,7 @@ jobs:
       - name: 第6次下载文件
         id: downloading6
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -291,7 +291,7 @@ jobs:
       - name: 第7次下载文件
         id: downloading7
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -326,7 +326,7 @@ jobs:
       - name: 第8次下载文件
         id: downloading8
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -374,7 +374,7 @@ jobs:
       - name: 第9次下载文件
         id: downloading9
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -408,7 +408,7 @@ jobs:
       - name: 第10次下载文件
         id: downloading10
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -455,7 +455,7 @@ jobs:
       - name: 第11次下载文件
         id: downloading11
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -490,7 +490,7 @@ jobs:
       - name: 第12次下载文件
         id: downloading12
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -539,7 +539,7 @@ jobs:
       - name: 第13次下载文件
         id: downloading13
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -574,7 +574,7 @@ jobs:
       - name: 第14次下载文件
         id: downloading14
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -622,7 +622,7 @@ jobs:
       - name: 第15次下载文件
         id: downloading15
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -657,7 +657,7 @@ jobs:
       - name: 第16次下载文件
         id: downloading16
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -703,7 +703,7 @@ jobs:
       - name: 第17次下载文件
         id: downloading17
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -738,7 +738,7 @@ jobs:
       - name: 第18次下载文件
         id: downloading18
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -787,7 +787,7 @@ jobs:
       - name: 第19次下载文件
         id: downloading19
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -822,7 +822,7 @@ jobs:
       - name: 第20次下载文件
         id: downloading20
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -871,7 +871,7 @@ jobs:
       - name: 第21次下载文件
         id: downloading21
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -906,7 +906,7 @@ jobs:
       - name: 第22次下载文件
         id: downloading22
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -954,7 +954,7 @@ jobs:
       - name: 第23次下载文件
         id: downloading23
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -989,7 +989,7 @@ jobs:
       - name: 第24次下载文件
         id: downloading24
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1038,7 +1038,7 @@ jobs:
       - name: 第25次下载文件
         id: downloading25
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1073,7 +1073,7 @@ jobs:
       - name: 第26次下载文件
         id: downloading26
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1122,7 +1122,7 @@ jobs:
       - name: 第27次下载文件
         id: downloading27
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1158,7 +1158,7 @@ jobs:
       - name: 第28次下载文件
         id: downloading28
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1206,7 +1206,7 @@ jobs:
       - name: 第29次下载文件
         id: downloading29
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1241,7 +1241,7 @@ jobs:
       - name: 第30次下载文件
         id: downloading30
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1290,7 +1290,7 @@ jobs:
       - name: 第31次下载文件
         id: downloading31
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1325,7 +1325,7 @@ jobs:
       - name: 第32次下载文件
         id: downloading32
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1374,7 +1374,7 @@ jobs:
       - name: 第33次下载文件
         id: downloading33
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1409,7 +1409,7 @@ jobs:
       - name: 第34次下载文件
         id: downloading34
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1457,7 +1457,7 @@ jobs:
       - name: 第35次下载文件
         id: downloading35
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1493,7 +1493,7 @@ jobs:
       - name: 第36次下载文件
         id: downloading36
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1542,7 +1542,7 @@ jobs:
       - name: 第37次下载文件
         id: downloading37
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1576,7 +1576,7 @@ jobs:
       - name: 第38次下载文件
         id: downloading38
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1624,7 +1624,7 @@ jobs:
       - name: 第39次下载文件
         id: downloading39
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1660,7 +1660,7 @@ jobs:
       - name: 第40次下载文件
         id: downloading40
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1708,7 +1708,7 @@ jobs:
       - name: 第41次下载文件
         id: downloading41
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1742,7 +1742,7 @@ jobs:
       - name: 第42次下载文件
         id: downloading42
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1790,7 +1790,7 @@ jobs:
       - name: 第43次下载文件
         id: downloading43
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1824,7 +1824,7 @@ jobs:
       - name: 第44次下载文件
         id: downloading44
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1872,7 +1872,7 @@ jobs:
       - name: 第45次下载文件
         id: downloading45
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1906,7 +1906,7 @@ jobs:
       - name: 第46次下载文件
         id: downloading46
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1953,7 +1953,7 @@ jobs:
       - name: 第47次下载文件
         id: downloading47
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -1987,7 +1987,7 @@ jobs:
       - name: 第48次下载文件
         id: downloading48
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -2035,7 +2035,7 @@ jobs:
       - name: 第49次下载文件
         id: downloading49
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
@@ -2070,7 +2070,7 @@ jobs:
       - name: 第50次下载文件
         id: downloading50
         run: |
-          mkdir downloads
+          
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
           filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
           echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  

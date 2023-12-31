@@ -1,4 +1,4 @@
-name: deta PP下载rclone上传
+name: deta PP下载rclone上传test
 on:
   repository_dispatch:
   workflow_dispatch:

@@ -59,16 +59,7 @@ jobs:
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
-        
-          
-      
-      - name: 上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}     
+          echo "::set-output name=size::$size"  >/dev/null 2>&1      
      
       - name: 保存数据，删除远程已经下载列表
         id:  database
@@ -142,14 +133,6 @@ jobs:
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
-
-      
-      - name: 第3次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第3次保存数据，删除远程已经下载列表
         id:  database3
@@ -234,12 +217,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第5次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第5次保存数据，删除远程已经下载列表
         id:  database5
@@ -324,12 +301,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第7次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第7次保存数据，删除远程已经下载列表
         id:  database7
@@ -413,13 +384,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第9次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-
       - name: 第9次保存数据，删除远程已经下载列表
         id:  database9
         run: |
@@ -501,12 +465,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第11次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第11次保存数据，删除远程已经下载列表
         id:  database11
@@ -591,12 +549,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第13次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第13次保存数据，删除远程已经下载列表
         id:  database13
@@ -680,13 +632,7 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第15次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-  
+ 
       - name: 第15次保存数据，删除远程已经下载列表
         id:  database15
         run: |
@@ -767,12 +713,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第17次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
  
       - name: 第17次保存数据，删除远程已经下载列表
         id:  database17
@@ -857,12 +797,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第19次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
   
       - name: 第19次保存数据，删除远程已经下载列表
         id:  database19
@@ -947,13 +881,7 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第21次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-  
+ 
       - name: 第21次保存数据，删除远程已经下载列表
         id:  database21
         run: |
@@ -1036,12 +964,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第23次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第23次保存数据，删除远程已经下载列表
         id:  database23
@@ -1126,13 +1048,7 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第25次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-    
+   
       - name: 第25次保存数据，删除远程已经下载列表
         id:  database25
         run: |
@@ -1216,12 +1132,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第27次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
   
       - name: 第27次保存数据，删除远程已经下载列表
         id:  database27
@@ -1306,12 +1216,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第29次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
 
       - name: 第29次保存数据，删除远程已经下载列表
         id:  database29
@@ -1396,12 +1300,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第31次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
   
       - name: 第31次保存数据，删除远程已经下载列表
         id:  database31
@@ -1486,12 +1384,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第33次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
    
       - name: 第33次保存数据，删除远程已经下载列表
         id:  database33
@@ -1575,12 +1467,6 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第35次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
     
       - name: 第35次保存数据，删除远程已经下载列表
         id:  database35
@@ -1665,13 +1551,7 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
       
-      - name: 第37次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
- 
+
       - name: 第37次保存数据，删除远程已经下载列表
         id:  database37
         run: |
@@ -1754,13 +1634,7 @@ jobs:
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
           
       
-      - name: 第39次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-   
+  
       - name: 第39次保存数据，删除远程已经下载列表
         id:  database39
         run: |
@@ -1843,13 +1717,7 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
       
-      - name: 第41次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-   
+  
       - name: 第41次保存数据，删除远程已经下载列表
         id:  database41
         run: |
@@ -1931,12 +1799,6 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
 
-      - name: 第43次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
     
       - name: 第43次保存数据，删除远程已经下载列表
         id:  database43
@@ -2019,13 +1881,7 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
 
-      - name: 第45次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-   
+  
       - name: 第45次保存数据，删除远程已经下载列表
         id:  database45
         run: |
@@ -2106,12 +1962,6 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
  
-      - name: 第47次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
    
       - name: 第47次保存数据，删除远程已经下载列表
         id:  database47
@@ -2194,13 +2044,7 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
       
-      - name: 第49次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-    
+   
       - name: 第49次保存数据，删除远程已经下载列表
         id:  database49
         run: |

@@ -122,10 +122,10 @@ jobs:
 
       - name: Copy Files
         run: |
-          copy downloads1/  downloads2/
+          cp -r downloads1/  downloads2/
       - name: Copy Files 1
         run: |      
-          copy downloads2/ downloads3/
+          cp -r downloads2/ downloads3/
       - name: 第3次删除已下载文件
         run: |
          sudo rm -rf ${{ github.workspace }}/downloads1/

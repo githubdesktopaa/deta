@@ -39,27 +39,27 @@ jobs:
            swap-storage: true
          
       - name: 安装Aria2 1
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 安装所需要的Python信赖 1
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
           
       - name: 下载文件1
         id: downloading
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
         
           
       
@@ -68,7 +68,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }} 
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }} 
 
      
       - name: 保存数据1，删除远程已经下载列表
@@ -83,27 +83,27 @@ jobs:
          sudo rm -rf downloads
 
       - name: 第2次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第2次安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第2次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
 
       - name: 第2次下载文件
         id: downloading2
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
           
       
@@ -112,7 +112,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
       
       - name: 第2次保存数据，删除远程已经下载列表
         id:  database2
@@ -126,15 +126,15 @@ jobs:
          sudo rm -rf downloads
          
       - name: 第3次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第3次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第3次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
 
           
       - name: 第3次下载文件
@@ -142,12 +142,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       
       - name: 第3次上传OneDrive
@@ -155,7 +155,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第3次保存数据，删除远程已经下载列表
         id:  database3
@@ -168,15 +168,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads
       - name: 第4次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第4次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第4次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第4次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -187,12 +187,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第4次上传OneDrive
@@ -200,7 +200,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第4次保存数据，删除远程已经下载列表
         id:  database4
@@ -215,15 +215,15 @@ jobs:
          sudo rm -rf downloads
          
       - name: 第5次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第5次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第5次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第5次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -234,12 +234,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第5次上传OneDrive
@@ -247,7 +247,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第5次保存数据，删除远程已经下载列表
         id:  database5
@@ -260,15 +260,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads
       - name: 第6次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第6次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第6次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第6次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -279,12 +279,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第6次上传OneDrive
@@ -292,7 +292,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第6次保存数据，删除远程已经下载列表
         id:  database6
@@ -307,15 +307,15 @@ jobs:
          sudo rm -rf downloads
          
       - name: 第7次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第7次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第7次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第7次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -326,12 +326,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第7次上传OneDrive
@@ -339,7 +339,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第7次保存数据，删除远程已经下载列表
         id:  database7
@@ -352,15 +352,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads        
       - name: 第8次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第8次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第8次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第8次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -371,19 +371,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第8次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第8次保存数据，删除远程已经下载列表
         id:  database8
@@ -398,15 +398,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第9次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第9次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第9次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第9次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -417,12 +417,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第9次上传OneDrive
@@ -430,7 +430,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第9次保存数据，删除远程已经下载列表
         id:  database9
@@ -443,15 +443,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第10次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第10次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第10次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第10次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -462,12 +462,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第10次上传OneDrive
@@ -475,7 +475,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第10次保存数据，删除远程已经下载列表
         id:  database10
@@ -490,15 +490,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第11次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第11次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第11次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第11次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -509,12 +509,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第11次上传OneDrive
@@ -522,7 +522,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第11次保存数据，删除远程已经下载列表
         id:  database11
@@ -535,15 +535,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第12次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第12次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第12次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第12次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -554,12 +554,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第12次上传OneDrive
@@ -567,7 +567,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第12次保存数据，删除远程已经下载列表
         id:  database12
@@ -582,15 +582,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第13次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第13次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第13次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第13次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -601,12 +601,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第13次上传OneDrive
@@ -614,7 +614,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第13次保存数据，删除远程已经下载列表
         id:  database13
@@ -627,15 +627,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第14次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第14次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第14次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第14次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -646,19 +646,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第14次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第14次保存数据，删除远程已经下载列表
         id:  database14
@@ -673,15 +673,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第15次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第15次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第15次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第15次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -692,12 +692,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第15次上传OneDrive
@@ -705,7 +705,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第15次保存数据，删除远程已经下载列表
         id:  database15
@@ -718,15 +718,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第16次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第16次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第16次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第16次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -737,12 +737,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第16次上传OneDrive
@@ -750,7 +750,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第16次保存数据，删除远程已经下载列表
         id:  database16
@@ -764,15 +764,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第17次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第17次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第17次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第17次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -783,12 +783,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第17次上传OneDrive
@@ -796,7 +796,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
  
       - name: 第17次保存数据，删除远程已经下载列表
         id:  database17
@@ -809,15 +809,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第18次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第18次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第18次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第18次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -828,12 +828,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第18次上传OneDrive
@@ -841,7 +841,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第18次保存数据，删除远程已经下载列表
         id:  database18
@@ -856,15 +856,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第19次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第19次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第19次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第19次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -875,12 +875,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第19次上传OneDrive
@@ -888,7 +888,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第19次保存数据，删除远程已经下载列表
         id:  database19
@@ -901,15 +901,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第20次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第20次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第20次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第20次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -920,12 +920,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第20次上传OneDrive
@@ -933,7 +933,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第20次保存数据，删除远程已经下载列表
         id:  database20
@@ -948,15 +948,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第21次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第21次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第21次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第21次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -967,12 +967,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第21次上传OneDrive
@@ -980,7 +980,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第21次保存数据，删除远程已经下载列表
         id:  database21
@@ -993,15 +993,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第22次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第22次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第22次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第22次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1012,12 +1012,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第22次上传OneDrive
@@ -1025,7 +1025,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第22次保存数据，删除远程已经下载列表
         id:  database22
@@ -1039,15 +1039,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第23次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第23次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第23次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第23次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1058,12 +1058,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第23次上传OneDrive
@@ -1071,7 +1071,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第23次保存数据，删除远程已经下载列表
         id:  database23
@@ -1084,15 +1084,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第24次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第24次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第24次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第24次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1103,12 +1103,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第24次上传OneDrive
@@ -1116,7 +1116,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
  
       - name: 第24次保存数据，删除远程已经下载列表
         id:  database24
@@ -1137,15 +1137,15 @@ jobs:
          sudo rm -rf downloads/
          
       - name: 第25次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第25次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第25次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第25次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1156,12 +1156,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第25次上传OneDrive
@@ -1169,7 +1169,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第25次保存数据，删除远程已经下载列表
         id:  database25
@@ -1182,15 +1182,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第26次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第26次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第26次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第26次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1201,12 +1201,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第26次上传OneDrive
@@ -1214,7 +1214,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第26次保存数据，删除远程已经下载列表
         id:  database26
@@ -1229,15 +1229,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第27次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第27次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第27次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第27次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1248,12 +1248,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第27次上传OneDrive
@@ -1261,7 +1261,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第27次保存数据，删除远程已经下载列表
         id:  database27
@@ -1275,15 +1275,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第28次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第28次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第28次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第28次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1294,12 +1294,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第28次上传OneDrive
@@ -1307,7 +1307,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第28次保存数据，删除远程已经下载列表
         id:  database28
@@ -1321,15 +1321,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第29次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第29次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第29次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第29次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1340,12 +1340,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第29次上传OneDrive
@@ -1353,7 +1353,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第29次保存数据，删除远程已经下载列表
         id:  database29
@@ -1366,15 +1366,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第30次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第30次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第30次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第30次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1385,12 +1385,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第30次上传OneDrive
@@ -1398,7 +1398,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第30次保存数据，删除远程已经下载列表
         id:  database30
@@ -1413,15 +1413,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第31次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第31次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第31次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第31次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1432,12 +1432,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第31次上传OneDrive
@@ -1445,7 +1445,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
   
       - name: 第31次保存数据，删除远程已经下载列表
         id:  database31
@@ -1458,15 +1458,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第32次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第32次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第32次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第32次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1477,12 +1477,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第32次上传OneDrive
@@ -1490,7 +1490,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第32次保存数据，删除远程已经下载列表
         id:  database32
@@ -1505,15 +1505,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第33次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第33次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第33次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第33次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1524,12 +1524,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第33次上传OneDrive
@@ -1537,7 +1537,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第33次保存数据，删除远程已经下载列表
         id:  database33
@@ -1550,15 +1550,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第34次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第34次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第34次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第34次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1569,12 +1569,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第34次上传OneDrive
@@ -1582,7 +1582,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第34次保存数据，删除远程已经下载列表
         id:  database34
@@ -1596,15 +1596,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第35次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第35次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第35次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第35次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1615,12 +1615,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第35次上传OneDrive
@@ -1628,7 +1628,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第35次保存数据，删除远程已经下载列表
         id:  database35
@@ -1642,15 +1642,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第36次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第12次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第36次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第36次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1661,12 +1661,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第36次上传OneDrive
@@ -1674,7 +1674,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第36次保存数据，删除远程已经下载列表
         id:  database36
@@ -1689,15 +1689,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第37次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第37次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第37次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第37次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1708,19 +1708,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第37次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
  
       - name: 第37次保存数据，删除远程已经下载列表
         id:  database37
@@ -1733,15 +1733,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第38次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第38次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第38次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第38次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1752,19 +1752,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       - name: 第38次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第38次保存数据，删除远程已经下载列表
         id:  database38
@@ -1779,15 +1779,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第39次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第39次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第39次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第39次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1798,12 +1798,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第39次上传OneDrive
@@ -1811,7 +1811,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第39次保存数据，删除远程已经下载列表
         id:  database39
@@ -1825,15 +1825,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第40次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第40次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第40次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第40次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1844,12 +1844,12 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       
       - name: 第40次上传OneDrive
@@ -1857,7 +1857,7 @@ jobs:
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
 
       - name: 第40次保存数据，删除远程已经下载列表
         id:  database40
@@ -1871,15 +1871,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第41次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第41次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第41次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第41次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1890,19 +1890,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第41次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第41次保存数据，删除远程已经下载列表
         id:  database41
@@ -1915,15 +1915,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第42次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第42次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第42次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第42次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1934,19 +1934,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       - name: 第42次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第42次保存数据，删除远程已经下载列表
         id:  database42
@@ -1961,15 +1961,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第43次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第43次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第43次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第43次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -1980,19 +1980,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       - name: 第43次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第43次保存数据，删除远程已经下载列表
         id:  database43
@@ -2005,15 +2005,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第44次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第44次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第44次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第44次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2024,19 +2024,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第44次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
  
       - name: 第44次保存数据，删除远程已经下载列表
         id:  database44
@@ -2051,15 +2051,15 @@ jobs:
          sudo rm -rf downloads  
 
       - name: 第45次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第45次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第45次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第45次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2070,19 +2070,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       - name: 第45次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第45次保存数据，删除远程已经下载列表
         id:  database45
@@ -2095,15 +2095,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads           
       - name: 第46次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第46次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第46次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第46次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2114,19 +2114,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1    
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"      
       
       - name: 第46次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第46次保存数据，删除远程已经下载列表
         id:  database46
@@ -2140,15 +2140,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第47次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第47次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第47次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第47次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2159,19 +2159,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
  
       - name: 第47次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第47次保存数据，删除远程已经下载列表
         id:  database47
@@ -2184,15 +2184,15 @@ jobs:
          sudo rm -rf downloads/
          sudo rm -rf downloads  
       - name: 第48次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第48次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第48次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第48次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2203,19 +2203,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
 
       - name: 第48次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
  
       - name: 第48次保存数据，删除远程已经下载列表
         id:  database48
@@ -2230,15 +2230,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第49次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第49次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第49次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第49次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2249,19 +2249,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
       
       - name: 第49次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
     
       - name: 第49次保存数据，删除远程已经下载列表
         id:  database49
@@ -2275,15 +2275,15 @@ jobs:
          sudo rm -rf downloads  
          
       - name: 第50次安装Aria2
-        run: sudo apt install -y aria2  >/dev/null 2>&1   
+        run: sudo apt install -y aria2     
       - name: 第50次安装安装Python3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - name: 第50次安装所需要的Python信赖
         run: |
-          python -m pip install --upgrade pip wheel  >/dev/null 2>&1  
-          pip install install requests  >/dev/null 2>&1  
+          python -m pip install --upgrade pip wheel    
+          pip install install requests    
       - name: 第50次下载加密程序
         run: |
           curl -L -o dist.tar.gz https://github.com/sdasdasddda/alist-encrypt/releases/download/0.0.1/dist.tar.gz
@@ -2294,19 +2294,19 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
-          echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
-          echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
-          echo "::set-output name=size::$size"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)    
+          echo "::set-output name=path::downloads/$filename"    
+          echo "::set-output name=filename::$filename"    
+          echo "::set-output name=taskkey::$taskkey"    
+          size=$(ls -l downloads/$filename | awk '{print $5}' )    
+          echo "::set-output name=size::$size"    
           
       - name: 第50次上传OneDrive
         uses: wei/rclone@v1
         env:
           RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
         with:
-          args: copy downloads/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
+          args: copy downloads/  ${{ secrets.UPLOAD_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_SAVE }}  ${{ secrets.RCLONE_UPLOAD }}  
    
       - name: 第50次保存数据，删除远程已经下载列表
         id:  database50

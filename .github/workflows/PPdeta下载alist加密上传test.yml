@@ -36,6 +36,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip wheel    
           pip install install requests   
+      - name: 下载加密程序1
+        run: |
+          curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
+          tar -tzvf dist.tar.gz
+          tar -xzf dist.tar.gz          
 
       - name: 下载文件1
         id: downloading1
@@ -49,16 +54,12 @@ jobs:
           size=$(ls -l downloads/$filename | awk '{print $5}' )    
           echo "::set-output name=size::$size"  
 
-      - name: 下载加密程序1
-        run: |
-          curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
-          tar -tzvf dist.tar.gz
-          tar -xzf dist.tar.gz
+
           
       - name: crypt file
         id: encrypt1
         run: |
-           ${{ github.workspace }}/dist/build/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
+           ${{ github.workspace }}/build/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
            sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"

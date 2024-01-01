@@ -66,23 +66,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件1
+      - name: crypt file
         id: encrypt1
-        if: steps.downloading1.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"
 
@@ -132,23 +125,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt2
-        if: steps.downloading2.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -198,23 +184,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt3
-        if: steps.downloading3.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -265,23 +244,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt4
-        if: steps.downloading4.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -331,25 +303,18 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt5
-        if: steps.downloading5.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
-           echo "::set-output name=size::$size"          
+           echo "::set-output name=size::$size"         
           
       
       - name: 第5次上传OneDrive
@@ -397,23 +362,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt6
-        if: steps.downloading6.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -463,23 +421,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt7
-        if: steps.downloading7.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -529,23 +480,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt8
-        if: steps.downloading8.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -595,23 +539,16 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt9
-        if: steps.downloading9.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
           
@@ -661,25 +598,18 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt10
-        if: steps.downloading10.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
-           echo "::set-output name=size::$size"          
+           echo "::set-output name=size::$size"      
           
       
       - name: 第10次上传OneDrive
@@ -727,25 +657,18 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: crypt file
         id: encrypt11
-        if: steps.downloading11.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
-           extension=$(awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}' suffixes | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-           filename_no_suffix="${filename%.*}"
-           newfilename="$filename_no_suffix"."$extension"
-           if [ "$filename" != "$newfilename" ]; then
-            	mv out/$filename out/$newfilename
-           fi
-           sha1_s=`openssl sha1 out/$newfilename | awk '{ print $2 }'`
+           sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"
            echo "::set-output name=header::$header"
-           echo "::set-output name=filename::$newfilename"
-           echo "::set-output name=path::out/$newfilename"
+           echo "::set-output name=filename::$filename"
+           echo "::set-output name=path::out/$filename"
            size=$(ls -l out/$filename | awk '{print $5}' )
-           echo "::set-output name=size::$size"          
+           echo "::set-output name=size::$size"         
           
       
       - name: 第11次上传OneDrive

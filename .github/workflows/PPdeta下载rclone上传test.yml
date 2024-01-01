@@ -77,11 +77,11 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads2 | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads2/$filename"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
+          echo "::set-output name=path::downloads1/$filename"  >/dev/null 2>&1  
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads2/$filename | awk '{print $5}' )  >/dev/null 2>&1  
+          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1     
       - name: 第2次保存数据，删除远程已经下载列表
         id:  database2
@@ -109,11 +109,11 @@ jobs:
         run: |
           mkdir downloads
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --act="download"
-          filename=$(ls downloads3 | head -n1)  >/dev/null 2>&1  
-          echo "::set-output name=path::downloads3/$filename"  >/dev/null 2>&1  
+          filename=$(ls downloads | head -n1)  >/dev/null 2>&1  
+          echo "::set-output name=path::downloads/$filename"  >/dev/null 2>&1  
           echo "::set-output name=filename::$filename"  >/dev/null 2>&1  
           echo "::set-output name=taskkey::$taskkey"  >/dev/null 2>&1  
-          size=$(ls -l downloads3/$filename | awk '{print $5}' )  >/dev/null 2>&1  
+          size=$(ls -l downloads/$filename | awk '{print $5}' )  >/dev/null 2>&1  
           echo "::set-output name=size::$size"  >/dev/null 2>&1  
 
 

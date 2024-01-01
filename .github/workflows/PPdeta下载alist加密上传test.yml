@@ -1,4 +1,4 @@
-name: deta PP下载alist加密上传
+name: deta PP下载rclone上传
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -68,7 +68,7 @@ jobs:
           
       - name: 加密文件1
         id: encrypt1
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading1.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -134,7 +134,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt2
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading2.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -200,7 +200,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt3
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading3.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -267,7 +267,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt4
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading4.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -333,7 +333,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt5
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading5.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -399,7 +399,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt6
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading6.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -465,7 +465,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt7
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading7.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -531,7 +531,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt8
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading8.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -597,7 +597,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt9
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading9.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -663,7 +663,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt10
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading10.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
@@ -729,7 +729,7 @@ jobs:
           
       - name: 加密文件
         id: encrypt11
-        if: steps.downloading.outputs.filename != '' && !cancelled() && !failure()
+        if: steps.downloading11.outputs.filename != '' && !cancelled() && !failure()
         run: |
            ${{ github.workspace }}/dist/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)

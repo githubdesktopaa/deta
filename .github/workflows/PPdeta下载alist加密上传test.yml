@@ -52,11 +52,8 @@ jobs:
       - name: 下载加密程序1
         run: |
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
+          tar -tzvf dist.tar.gz
           tar -xzf dist.tar.gz
-      - name: 下载加密程序1
-        run: |
-           cd ${{ github.workspace }}/dist.tar/
-           tar -xzf dist.tar
           
       - name: crypt file
         id: encrypt1

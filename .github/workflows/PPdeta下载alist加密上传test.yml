@@ -55,7 +55,8 @@ jobs:
           tar -xzf dist.tar.gz
       - name: 下载加密程序1
         run: |
-          tar -xzf ${{ github.workspace }}/dist.tar/dist.tar
+           cd ${{ github.workspace }}/dist.tar/
+           tar -xzf dist.tar
           
       - name: crypt file
         id: encrypt1

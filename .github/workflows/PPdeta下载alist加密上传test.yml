@@ -38,9 +38,9 @@ jobs:
           pip install install requests   
       - name: 下载加密程序1
         run: |
-          curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
-          tar -tzvf dist.tar.gz
-          tar -xzf dist.tar.gz          
+          curl -L -o alist-encrypt-linux.tar https://github.com/githubdesktopaa/deta/releases/download/tf/alist-encrypt-linux.tar
+          tar -tzvf alist-encrypt-linux.tar
+          tar -xzf alist-encrypt-linux.tar          
 
       - name: 下载文件1
         id: downloading1
@@ -59,7 +59,7 @@ jobs:
       - name: crypt file
         id: encrypt1
         run: |
-           ${{ github.workspace }}/build/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
+           ${{ github.workspace }}/nodejs-linux '${{ secrets.ALIST_ENCRYPT_PASSWORD }}' aesctr enc '${{ github.workspace }}/downloads/' '${{ github.workspace }}/out/' encName
            filename=$(ls out | head -n1)
            sha1_s=`openssl sha1 out/$filename | awk '{ print $2 }'`
            header="OC-Checksum:sha1:$sha1_s"

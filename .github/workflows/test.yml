@@ -24,19 +24,6 @@ jobs:
           echo "Free space:"
           df -h
 
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-           tool-cache: true
-           android: true
-           dotnet: true
-           haskell: true
-           large-packages: true
-           docker-images: false
-           swap-storage: true
 
       - name: 第1次安装Aria2
         run: sudo apt install -y aria2     
@@ -66,7 +53,7 @@ jobs:
           curl -L -o dist.tar.gz https://github.com/githubdesktopaa/alist-encrypt/releases/download/0.0.2/dist.tar.gz
           tar -xzf dist.tar.gz
           
-      - name: 加密文件
+      - name: 加密文件1
         id: encrypt1
         if: steps.downloading1.outputs.filename != '' && !cancelled() && !failure()
         run: |
@@ -85,21 +72,9 @@ jobs:
            echo "::set-output name=path::out/$newfilename"
            size=$(ls -l out/$filename | awk '{print $5}' )
            echo "::set-output name=size::$size"          
-          
-      
-      - name: 第1次上传OneDrive
-        uses: wei/rclone@v1
-        env:
-          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
-        with:
-          args: copy out/  ${{ secrets.TO_UPLOAD_TO_THE_NETDISK_ONEDRIVE }}:${{ secrets.YEARS }}/${{ secrets.VIDEO_PP_SAVE_DIRECTORY }}  ${{ secrets.RCLONE_UPLOAD_CONFIGURATION_PARAMETERS }}  
-      
+
       - name: 第1次保存数据，删除远程已经下载列表
         id:  database1
         run: |
           python task.py --projet="${{ secrets.DETA_PROJECT_ID }}" --apikey="${{ secrets.DETA_API_KEY }}" --taskkey="${{ steps.downloading1.outputs.taskkey }}" --act="del"
           echo "::set-output name=status::ok"
-      - name: 第1次删除已下载文件
-        run: |
-         sudo rm -rf downloads
-         sudo rm -rf out
